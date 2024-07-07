@@ -5,4 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/2048',
+  resolve: {
+    alias: {
+      app: '/src/app',
+      entities: '/src/entities',
+      features: '/src/features',
+    }
+  }
 })
