@@ -1,0 +1,42 @@
+@import '/src/app/styles/variables.scss';
+
+.desk {
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    background-color: $dark-grey;
+    padding: 20px;
+    position: relative;
+
+    &-grid {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+    }
+}
+
+.squar {
+    width: 100%;
+    height: 100%;
+    background-color: $grey;
+    border-radius: 5px;
+}
+
+.point {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 107.5px;
+    height: 107.5px;
+    top: 20px;
+    left: 20px;
+    font-size: 55px;
+    font-weight: 700;
+    color: $dark-brown;
+    background-color: $white;
+    border-radius: 5px;
+    transition: 0.1s ease-in-out;
+}

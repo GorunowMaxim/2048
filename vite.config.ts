@@ -1,15 +1,13 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: '/2048',
-  resolve: {
-    alias: {
-      app: '/src/app',
-      entities: '/src/entities',
-      features: '/src/features',
-    }
-  }
-})
+	plugins: [react()],
+	base: '/2048',
+	resolve: {
+		alias: {
+			src: "/src",
+		},
+	},	
+});

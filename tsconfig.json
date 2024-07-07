@@ -1,11 +1,9 @@
 {
 	"files": [],
 	"compilerOptions": {
-		"baseUrl": "src",
+		"baseUrl": ".",
 		"paths": {
-			"app/*": ["app/*"],
-			"entities/*": ["entities/*"],
-			"features/*": ["features/*"],
+			"src/*": ["src/*"]
 		}
 	},
 	"references": [

@@ -1,10 +1,12 @@
-import 'app/styles/reset.scss';
+import { Desk } from '../entities/desk';
+
+import './styles/index.scss';
 
 function App() {
 	return (
 		<div className='wrapper'>
 			<main className='main'>
-				<div className='desk'></div>
+				<Desk />
 			</main>
 		</div>
 	);
