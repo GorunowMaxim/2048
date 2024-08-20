@@ -1,4 +1,4 @@
-import { Desk } from '../entities/desk';
+import { Desk } from '../desk';
 
 import './styles/index.scss';
 
