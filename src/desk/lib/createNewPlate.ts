@@ -24,9 +24,11 @@ const plateAXisData = [
 ];
 
 export const createNewPlate = (plates: Obj[]) => {
-	const freePlates = plateAXisData.filter((plate) => {
-		return !plates.some((plateData) => plate.x === plateData.x && plate.y === plateData.y);
-	});
+	const freePlates =
+		plates &&
+		plateAXisData.filter((plate) => {
+			return !plates.some((plateData) => plate.x === plateData.x && plate.y === plateData.y);
+		});
 	const value = Math.random() > 0.1 ? 2 : 4;
 	const randomIndexFreePlate = Math.floor(Math.random() * freePlates.length);
 	const pickedFreePlate = freePlates[randomIndexFreePlate];
