@@ -12,13 +12,13 @@ type Obj = {
 
 const res2 = [
 	{ value: 4, x: 1, y: 1 },
-	{ value: 16, x: 1, y: 3 },
-	{ value: 4, x: 2, y: 1 },
-	{ value: 32, x: 1, y: 4 },
-	{ value: 4, x: 2, y: 2 },
-	{ value: 2, x: 2, y: 4 },
 	{ value: 8, x: 1, y: 2 },
+	{ value: 16, x: 1, y: 3 },
+	{ value: 32, x: 1, y: 4 },
+	{ value: 4, x: 2, y: 1 },
+	{ value: 4, x: 2, y: 2 },
 	{ value: 2, x: 2, y: 3 },
+	{ value: 2, x: 2, y: 4 },
 ];
 
 const sortPlates = (plates: Obj[]) => {
@@ -31,9 +31,8 @@ const sortPlates = (plates: Obj[]) => {
 };
 
 export const Desk = () => {
-	const [plates, setPlates] = useState<Obj[]>(sortPlates(res2));
+	const [plates, setPlates] = useState<Obj[]>(res2);
 	console.log(plates);
-
 	const handleClick = useCallback(
 		(e: KeyboardEvent) => {
 			let forward = '';
@@ -52,8 +51,7 @@ export const Desk = () => {
 						forward = 'top';
 						break;
 				}
-				console.log('work');
-				plates && setPlates(sortPlates(movePlates(plates, forward)));
+				plates && setPlates(movePlates(plates, forward));
 			}
 		},
 		[plates]

@@ -1,3 +1,5 @@
+import { createNewPlate } from './createNewPlate';
+
 type Obj = {
 	value: number;
 	x: number;
@@ -64,6 +66,7 @@ export const movePlates = (plates: Obj[], direction: string) => {
 		const changedPlates = updatePlates(sortedPlates, direction);
 		result.push(...changedPlates);
 	}
-
+	const newPlate = createNewPlate(result);
+	result.push(newPlate);
 	return result;
 };
