@@ -1,10 +1,6 @@
-type Obj = {
-	value: number;
-	x: number;
-	y: number;
-};
+import { PlateData } from '../../app/types/types';
 
-const plateAXisData = [
+const platePositions = [
 	{ x: 1, y: 1 },
 	{ x: 1, y: 2 },
 	{ x: 1, y: 3 },
@@ -23,14 +19,17 @@ const plateAXisData = [
 	{ x: 4, y: 4 },
 ];
 
-export const createNewPlate = (plates: Obj[]) => {
+export const createNewPlate = (plates: PlateData[]) => {
+	const lastPlate = plates[plates.length - 1];
 	const freePlates =
 		plates &&
-		plateAXisData.filter((plate) => {
+		platePositions.filter((plate) => {
 			return !plates.some((plateData) => plate.x === plateData.x && plate.y === plateData.y);
 		});
 	const value = Math.random() > 0.1 ? 2 : 4;
 	const randomIndexFreePlate = Math.floor(Math.random() * freePlates.length);
 	const pickedFreePlate = freePlates[randomIndexFreePlate];
-	return { value: value, x: pickedFreePlate.x, y: pickedFreePlate.y };
+	const id = plates.length > 0 ? lastPlate.id + 1 : 1;
+	return { id: id, value: value, x: pickedFreePlate.x, y: pickedFreePlate.y, status: 'new' };
 };
+

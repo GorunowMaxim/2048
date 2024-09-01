@@ -1,39 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { movePlates } from '../lib/updatePlates';
-
-import './styles.scss';
 import { createNewPlate } from '../lib/createNewPlate';
 
-type Obj = {
-	value: number;
-	x: number;
-	y: number;
+import { PlateData } from '../../app/types/types';
+
+import './styles.scss';
+import { Plate } from '../../entities/plate';
+
+const sortPlates = (plates: PlateData[]) => {
+	return plates.sort((a, b) => a.id - b.id);
 };
 
-// const res2 = [
-// 	{ value: 4, x: 1, y: 1 },
-// 	{ value: 8, x: 1, y: 2 },
-// 	{ value: 16, x: 1, y: 3 },
-// 	{ value: 32, x: 1, y: 4 },
-// 	{ value: 4, x: 2, y: 1 },
-// 	{ value: 4, x: 2, y: 2 },
-// 	{ value: 2, x: 2, y: 3 },
-// 	{ value: 2, x: 2, y: 4 },
-// ];
-
-// const sortPlates = (plates: Obj[]) => {
-// 	return plates.sort((a, b) => {
-// 		if (a.x === b.x) {
-// 			return a.y - b.y;
-// 		}
-// 		return a.x - b.x;
-// 	});
-// };
+const sortByStatus = (plates: PlateData[]) => {
+	return plates.filter((plate) => plate.status !== 'merged');
+};
 
 export const Desk = () => {
-	const [plates, setPlates] = useState<Obj[] | null>();
-	console.log(plates);
+	const [plates, setPlates] = useState<PlateData[] | null>();
 	const handleClick = useCallback(
 		(e: KeyboardEvent) => {
 			let forward = '';
@@ -52,7 +36,9 @@ export const Desk = () => {
 						forward = 'top';
 						break;
 				}
-				plates && setPlates(movePlates(plates, forward));
+				setPlates((plates) => plates && sortByStatus(plates));
+				setPlates((plates) => plates && movePlates(plates, forward));
+				setPlates((plates) => plates && [...plates, createNewPlate(sortPlates(plates))]);
 			}
 		},
 		[plates]
@@ -76,14 +62,16 @@ export const Desk = () => {
 			</div>
 			<div className='game-desk'>
 				{plates &&
-					plates.map((plate, index) => {
-						const cls = `point point-${plate.value} row-${plate.x} col-${plate.y}`;
-						return (
-							<div key={index} className={cls}>
-								{plate.value}
-							</div>
-						);
-					})}
+					plates.map((plate) => (
+						<Plate
+							key={plate.id}
+							id={plate.id}
+							value={plate.value}
+							status={plate.status}
+							x={plate.x}
+							y={plate.y}
+						/>
+					))}
 			</div>
 		</div>
 	);

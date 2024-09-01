@@ -24,19 +24,40 @@
     border-radius: 5px;
 }
 
-.point {
+.plate {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     width: 107.5px;
     height: 107.5px;
-    font-size: 55px;
+    font-size: 50px;
     font-weight: 700;
     color: $dark-brown;
     background-color: $white;
     border-radius: 5px;
+    transition: .2s ease-in-out;
+    z-index: 10;
 
+    &_merged {
+        z-index: 0;
+        transition: .2s ease-in-out;
+    }
+
+    &_new {
+        animation: .3s creating;
+        z-index: 10;
+    }
+}
+
+@keyframes creating {
+    0%, 50% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .row {
@@ -53,7 +74,7 @@
     }
 
     &-4 {
-        top: 371px;
+        top: 372.5px;
     }
 }
 
@@ -63,15 +84,15 @@
     }
 
     &-2 {
-        left: 137px;
+        left: 137.5px;
     }
 
     &-3 {
-        left: 254px;
+        left: 255px;
     }
 
     &-4 {
-        left: 371px;
+        left: 372px;
     }
 }
 
@@ -92,8 +113,12 @@ $colors: (
 @for $i from 1 through 11 {
     $value: nth(map-keys($colors), $i);
 
-    .point-#{$value} {
+    .plate-#{$value} {
         background-color: map-get($colors, $value);
+
+        @if $value >=512 {
+            font-size: 40px;
+        }
 
         @if $value >=8 {
             color: #fff;

@@ -1,17 +1,12 @@
+import { PlateData } from '../../app/types/types';
 import { createNewPlate } from './createNewPlate';
-
-type Obj = {
-	value: number;
-	x: number;
-	y: number;
-};
 
 type UpdatePlatesData = (
 	direction: string,
-	updatedPlates: Obj[],
-	plates: Obj[],
-	lastPlate: Obj,
-	beforeLastPlate?: Obj
+	updatedPlates: PlateData[],
+	plates: PlateData[],
+	lastPlate: PlateData,
+	beforeLastPlate?: PlateData
 ) => void;
 
 const updatePlatesData: UpdatePlatesData = (direction, updatedPlates, plates, lastPlate, beforeLastPlate) => {
@@ -32,15 +27,19 @@ const updatePlatesData: UpdatePlatesData = (direction, updatedPlates, plates, la
 	plates.pop();
 
 	if (beforeLastPlate && lastPlate.value === beforeLastPlate.value) {
+		beforeLastPlate[axis] = axisData;
+		beforeLastPlate.status = 'merged';
+		updatedPlates.unshift(beforeLastPlate);
 		lastPlate.value *= 2;
+		lastPlate.status = 'new';
 		plates.pop();
 	}
 
 	updatedPlates.unshift(lastPlate);
 };
 
-const updatePlates = (plates: Obj[], direction: string) => {
-	let updatedPlates: Obj[] = [];
+const updatePlates = (plates: PlateData[], direction: string) => {
+	let updatedPlates: PlateData[] = [];
 
 	while (plates.length !== 0) {
 		const indexLastPlate = plates.length - 1;
@@ -51,14 +50,24 @@ const updatePlates = (plates: Obj[], direction: string) => {
 	return updatedPlates;
 };
 
-const sortByAxis = (direction: string, plates: Obj[]) => {
+const sortPlates = (plates: PlateData[]) => {
+	return plates.sort((a, b) => a.id - b.id);
+};
+
+const sortByAxis = (direction: string, plates: PlateData[]) => {
 	const axis = direction === 'left' || direction === 'right' ? 'y' : 'x';
 	return plates.sort((a, b) => (direction === 'left' || direction === 'top' ? b[axis] - a[axis] : a[axis] - b[axis]));
 };
 
-export const movePlates = (plates: Obj[], direction: string) => {
+export const movePlates = (plates: PlateData[], direction: string) => {
 	const axis = direction === 'left' || direction === 'right' ? 'x' : 'y';
 	const result = [];
+	plates = plates.map((plate) => {
+		if (plate.status === 'new') {
+			return { ...plate, status: null };
+		}
+		return plate;
+	});
 
 	for (let i = 1; i < 5; i++) {
 		const separatePlates = plates.filter((plate) => plate[axis] === i);
@@ -66,7 +75,5 @@ export const movePlates = (plates: Obj[], direction: string) => {
 		const changedPlates = updatePlates(sortedPlates, direction);
 		result.push(...changedPlates);
 	}
-	const newPlate = createNewPlate(result);
-	result.push(newPlate);
-	return result;
+	return sortPlates(result);
 };
