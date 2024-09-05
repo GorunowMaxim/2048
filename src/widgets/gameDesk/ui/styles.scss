@@ -1,0 +1,13 @@
+.game-panel {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 25px;
+    margin: 0px 0px 10px 0px;
+
+    &__name {
+        font-size: 75px;
+        color: #776e64;
+        font-weight: 700;
+    }
+}

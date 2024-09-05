@@ -18,7 +18,8 @@
         transition: .2s ease-in-out;
     }
 
-    &_new {
+    &_new,
+    &_mergedWith {
         animation: .3s creating;
         z-index: 10;
     }

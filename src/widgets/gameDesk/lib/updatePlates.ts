@@ -30,7 +30,7 @@ const updatePlatesData: UpdatePlatesData = (direction, updatedPlates, plates, la
 		beforeLastPlate.status = 'merged';
 		updatedPlates.unshift(beforeLastPlate);
 		lastPlate.value *= 2;
-		lastPlate.status = 'new';
+		lastPlate.status = 'mergedWith';
 		plates.pop();
 	}
 

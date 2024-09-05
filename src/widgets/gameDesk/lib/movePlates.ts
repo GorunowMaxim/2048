@@ -6,7 +6,7 @@ export const movePlates = (plates: PlateData[], direction: string) => {
 	const axis = direction === 'Left' || direction === 'Right' ? 'x' : 'y';
 	const result = [];
 	plates = plates.map((plate) => {
-		if (plate.status === 'new') {
+		if (plate.status === 'new' || plate.status === 'mergedWith') {
 			return { ...plate, status: null };
 		}
 		return plate;

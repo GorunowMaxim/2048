@@ -1,0 +1,18 @@
+.score-counter {
+    width: 90px;
+    height: 65px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #bbad9f;
+    color: #f9f6f2;
+
+    span {
+        font-size: 14px;
+        margin: 0px 0px 6px 0px;
+    }
+}

@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import './styles.scss';
+
 import { Desk } from '../../../entities/desk';
 import { Plate } from '../../../entities/plate';
+import { RestartButton } from '../../../entities/restartButton';
+import { ScoreCounter } from '../../../entities/scoreCounter';
 
 import { createNewPlate } from '../lib/createNewPlate';
 import { sortPlatesByStatus } from '../lib/sortsPlates';
@@ -11,6 +15,8 @@ import { PlateData } from '../../../app/types/types';
 
 export const GameDesk = () => {
 	const [plates, setPlates] = useState<PlateData[] | null>();
+	const [restart, setRestart] = useState<boolean>(false);
+
 	const handleClick = useCallback(
 		(e: KeyboardEvent) => {
 			const allowedKeys = ['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'];
@@ -25,6 +31,13 @@ export const GameDesk = () => {
 	);
 
 	useEffect(() => {
+		if (restart) {
+			setPlates((plates) => plates && [...plates, createNewPlate(plates)]);
+			setRestart(false);
+		}
+	}, [plates]);
+
+	useEffect(() => {
 		!plates && setPlates([createNewPlate([])]);
 		window.addEventListener('keydown', handleClick);
 
@@ -33,19 +46,31 @@ export const GameDesk = () => {
 		};
 	}, [handleClick]);
 
+	const restartGame = () => {
+		setPlates([]);
+		setRestart(true);
+	};
+
 	return (
-		<Desk>
-			{plates &&
-				plates.map((plate) => (
-					<Plate
-						key={plate.id}
-						id={plate.id}
-						value={plate.value}
-						status={plate.status}
-						x={plate.x}
-						y={plate.y}
-					/>
-				))}
-		</Desk>
+		<>
+			<div className='game-panel'>
+				<span className='game-panel__name'>2048</span>
+				<ScoreCounter plates={plates} isRestart={restart} />
+				<RestartButton handleClick={restartGame} />
+			</div>
+			<Desk>
+				{plates &&
+					plates.map((plate) => (
+						<Plate
+							key={plate.id}
+							id={plate.id}
+							value={plate.value}
+							status={plate.status}
+							x={plate.x}
+							y={plate.y}
+						/>
+					))}
+			</Desk>
+		</>
 	);
 };
