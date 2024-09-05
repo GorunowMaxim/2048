@@ -1,0 +1,62 @@
+@import '/src/app/styles/variables.scss';
+
+.desk {
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    background-color: $dark-grey;
+    padding: 20px;
+    position: relative;
+
+    &-grid {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+    }
+}
+
+.squar {
+    width: 100%;
+    height: 100%;
+    background-color: $grey;
+    border-radius: 5px;
+}
+
+.row {
+    &-1 {
+        top: 20px;
+    }
+
+    &-2 {
+        top: 137px;
+    }
+
+    &-3 {
+        top: 254px;
+    }
+
+    &-4 {
+        top: 372px;
+    }
+}
+
+.col {
+    &-1 {
+        left: 20px;
+    }
+
+    &-2 {
+        left: 137px;
+    }
+
+    &-3 {
+        left: 254px;
+    }
+
+    &-4 {
+        left: 372px;
+    }
+}
+

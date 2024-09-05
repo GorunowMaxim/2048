@@ -1,4 +1,4 @@
-import { Desk } from '../desk';
+import { GameDesk } from '../widgets/gameDesk';
 
 import './styles/index.scss';
 
@@ -6,7 +6,7 @@ function App() {
 	return (
 		<div className='wrapper'>
 			<main className='main'>
-				<Desk />
+				<GameDesk />
 			</main>
 		</div>
 	);

@@ -1,4 +1,4 @@
-import { PlateData } from '../../app/types/types';
+import { PlateData } from '../../../app/types/types';
 
 const platePositions = [
 	{ x: 1, y: 1 },
@@ -32,4 +32,3 @@ export const createNewPlate = (plates: PlateData[]) => {
 	const id = plates.length > 0 ? lastPlate.id + 1 : 1;
 	return { id: id, value: value, x: pickedFreePlate.x, y: pickedFreePlate.y, status: 'new' };
 };
-
