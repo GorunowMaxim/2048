@@ -5,9 +5,9 @@
 		"jsx": "react-jsx",
 		"baseUrl": "src",
 		"paths": {
-			"app": ["/app/*"],
-			"entities": ["/entities/*"],
-			"widgets": ["/widgets/*"]
+			"app": ["app/*"],
+			"entities": ["entities/*"],
+			"widgets": ["widgets/*"]
 		}
 	},
 	"include": ["src"]

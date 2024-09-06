@@ -14,7 +14,7 @@ import { createNewPlate } from '../lib/createNewPlate';
 import { PlateData } from 'app/types/types';
 
 export const GameDesk = () => {
-	const [plates, setPlates] = useState<PlateData[] | null>();
+	const [plates, setPlates] = useState<PlateData[]>([]);
 	const [restart, setRestart] = useState<boolean>(false);
 
 	const handleClick = useCallback(
@@ -23,9 +23,9 @@ export const GameDesk = () => {
 			if (!allowedKeys.includes(e.key)) return;
 
 			const forward = e.key.slice(5);
-			setPlates((plates) => plates && sortPlatesByStatus(plates));
-			setPlates((plates) => plates && movePlates(plates, forward));
-			setPlates((plates) => plates && [...plates, createNewPlate(plates)]);
+			setPlates((plates) => sortPlatesByStatus(plates));
+			setPlates((plates) => movePlates(plates, forward));
+			setPlates((plates) => [...plates, createNewPlate(plates)]);
 		},
 		[plates]
 	);
@@ -38,7 +38,7 @@ export const GameDesk = () => {
 	}, [plates]);
 
 	useEffect(() => {
-		!plates && setPlates([createNewPlate([])]);
+		plates.length === 0 && setPlates([createNewPlate([])]);
 		window.addEventListener('keydown', handleClick);
 
 		return () => {

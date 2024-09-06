@@ -6,9 +6,9 @@ export default defineConfig({
 	base: '/2048',
 	resolve: {
 		alias: {
-			app: './src/app',
-			entities: './src/entities',
-			widgets: './src/widgets',
+			app: '/src/app',
+			entities: '/src/entities',
+			widgets: '/src/widgets',
 		},
 	},
 });
