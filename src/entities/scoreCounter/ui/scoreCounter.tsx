@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { PlateData } from '../../../app/types/types';
-
 import { countScores } from '../lib/countScores';
+
+import { PlateData } from 'app/types/types';
 
 import './styles.scss';
 

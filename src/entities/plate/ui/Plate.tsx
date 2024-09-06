@@ -1,4 +1,4 @@
-import { PlateData } from '../../../app/types/types';
+import { PlateData } from 'app/types/types';
 
 import './styles.scss';
 

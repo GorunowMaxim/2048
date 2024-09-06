@@ -2,16 +2,16 @@ import { useCallback, useEffect, useState } from 'react';
 
 import './styles.scss';
 
-import { Desk } from '../../../entities/desk';
-import { Plate } from '../../../entities/plate';
-import { RestartButton } from '../../../entities/restartButton';
-import { ScoreCounter } from '../../../entities/scoreCounter';
+import { Desk } from 'entities/desk';
+import { Plate } from 'entities/plate';
+import { ScoreCounter } from 'entities/scoreCounter';
+import { RestartButton } from 'entities/restartButton';
 
-import { createNewPlate } from '../lib/createNewPlate';
 import { sortPlatesByStatus } from '../lib/sortsPlates';
 import { movePlates } from '../lib/movePlates';
+import { createNewPlate } from '../lib/createNewPlate';
 
-import { PlateData } from '../../../app/types/types';
+import { PlateData } from 'app/types/types';
 
 export const GameDesk = () => {
 	const [plates, setPlates] = useState<PlateData[] | null>();

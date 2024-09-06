@@ -1,4 +1,4 @@
-import { GameDesk } from '../widgets/gameDesk';
+import { GameDesk } from 'widgets/gameDesk';
 
 import './styles/index.scss';
 
