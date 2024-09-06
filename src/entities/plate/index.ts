@@ -1,1 +1,1 @@
-export { Plate } from './ui/Plate.tsx';
+export { Plate } from './ui/Plate';
