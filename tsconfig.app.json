@@ -16,6 +16,12 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+		"baseUrl": "src",
+		"paths": {
+			"app": ["app/*"],
+			"entities": ["entities/*"],
+			"widgets": ["widgets/*"]
+		},
 
     /* Linting */
     "strict": true,

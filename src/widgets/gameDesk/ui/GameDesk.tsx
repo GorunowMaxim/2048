@@ -59,17 +59,16 @@ export const GameDesk = () => {
 				<RestartButton handleClick={restartGame} />
 			</div>
 			<Desk>
-				{plates &&
-					plates.map((plate) => (
-						<Plate
-							key={plate.id}
-							id={plate.id}
-							value={plate.value}
-							status={plate.status}
-							x={plate.x}
-							y={plate.y}
-						/>
-					))}
+				{plates.map((plate) => (
+					<Plate
+						key={plate.id}
+						id={plate.id}
+						value={plate.value}
+						status={plate.status}
+						x={plate.x}
+						y={plate.y}
+					/>
+				))}
 			</Desk>
 		</>
 	);
