@@ -46,10 +46,10 @@ export const GameDesk = () => {
 		};
 	}, [handleClick]);
 
-	const restartGame = () => {
+	const restartGame = useCallback(() => {
 		setPlates([]);
 		setRestart(true);
-	};
+	}, []);
 
 	return (
 		<>
