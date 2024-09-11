@@ -23,9 +23,11 @@ export const GameDesk = () => {
 			if (!allowedKeys.includes(e.key)) return;
 
 			const forward = e.key.slice(5);
-			setPlates((plates) => sortPlatesByStatus(plates));
-			setPlates((plates) => movePlates(plates, forward));
-			setPlates((plates) => [...plates, createNewPlate(plates)]);
+			setPlates((plates) => {
+				const sortedPlates = sortPlatesByStatus(plates);
+				const movedPlates = movePlates(sortedPlates, forward);
+				return [...movedPlates, createNewPlate(movedPlates)];
+			});
 		},
 		[plates]
 	);
